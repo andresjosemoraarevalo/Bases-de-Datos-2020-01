@@ -25,7 +25,7 @@ public class Prestamo {
     public Prestamo(LocalDateTime fecha, int numero, List<Moneda> pagoMonedas) {
         this.fecha = fecha;
         this.numero = numero;
-        this.pagoMonedas = pagoMonedas;
+        this.pagoMonedas = new ArrayList<>();
     }
 
     public int getNumero() {
