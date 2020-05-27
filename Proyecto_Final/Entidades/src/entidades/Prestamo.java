@@ -22,7 +22,7 @@ public class Prestamo {
     public Prestamo() {
     }
 
-    public Prestamo(LocalDateTime fecha, int numero, List<Moneda> pagoMonedas) {
+    public Prestamo(LocalDateTime fecha, int numero) {
         this.fecha = fecha;
         this.numero = numero;
         this.pagoMonedas = new ArrayList<>();
