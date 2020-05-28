@@ -5,7 +5,11 @@
  */
 package Controlador;
 
+import Control.FacadeLibreria;
 import Interfaz.IFacadeLibreria;
+import entidades.Libro;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,5 +17,14 @@ import Interfaz.IFacadeLibreria;
  */
 public class ControlEventosLibreria {
     private IFacadeLibreria interfazLibreria;
-    
+
+    public ControlEventosLibreria() {
+    }
+
+    public ControlEventosLibreria(IFacadeLibreria interfazLibreria) {
+        this.interfazLibreria = new FacadeLibreria();
+    }
+    public List<Libro> cargarLibros(){
+        return this.interfazLibreria.getCatalogo();
+    }
 }

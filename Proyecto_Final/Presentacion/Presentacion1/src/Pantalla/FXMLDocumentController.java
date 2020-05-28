@@ -6,7 +6,6 @@
 package Pantalla;
 
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
 import java.net.URL;
 import javafx.util.Duration;
 import java.time.LocalDateTime;
@@ -19,6 +18,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 /**
  *
@@ -30,7 +30,8 @@ public class FXMLDocumentController implements Initializable {
     private Label label;
     @FXML
     private Label fecha;
-    
+    @FXML
+    private ComboBox listaLibros;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
