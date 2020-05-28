@@ -10,6 +10,7 @@ package entidades;
  * @author andre, AAAAAAAAA
  */
 public enum Denominacion {
+    //Esto es un comentario.
     QUINIENTOS(500),
     MIL(1000);
     private final int valor;
