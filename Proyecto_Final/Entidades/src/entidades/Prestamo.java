@@ -5,6 +5,8 @@
  */
 package entidades;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,14 +21,20 @@ public class Prestamo {
     private int numero;
     private List<Linea> lineas = new ArrayList<>();
     private List<Moneda> pagoMonedas;
+    private int CantiQuinientos;
+    private int CantiMil;
+    private BigDecimal MontoTotal;
 
     public Prestamo() {
     }
 
-    public Prestamo(Date fecha, int numero) {
+    public Prestamo(Date fecha, int numero, int c1, int c2, BigDecimal mt) {
         this.fecha = fecha;
         this.numero = numero;
         this.pagoMonedas = new ArrayList<>();
+        this.CantiQuinientos = c1;
+        this.CantiMil = c2;
+        this.MontoTotal = mt;
     }
 
     public int getNumero() {
@@ -59,6 +67,48 @@ public class Prestamo {
 
     public void setPagoMonedas(List<Moneda> pagoMonedas) {
         this.pagoMonedas = pagoMonedas;
+    }
+    
+    public int getCantiMonedas500()
+    {
+        return this.CantiQuinientos;
+    }
+    public int getCantiMonedas1000()
+    {
+        return this.CantiMil;
+    }
+    public BigDecimal getMontoTotal()
+    {
+        return this.MontoTotal;
+    }
+    public void setCantiMonedas500(int canti500)
+    {
+        this.CantiQuinientos = canti500;
+        this.CalcularMontoTotal();
+    }
+    public void setCantiMonedas1000(int canti1000)
+    {
+        this.CantiMil = canti1000;
+        this.CalcularMontoTotal();
+    }
+    public void añadirACanti500(int canti500)
+    {
+        this.CantiQuinientos += canti500;
+        this.CalcularMontoTotal();
+    }
+    public void añadirACanti1000(int canti1000)
+    {
+        this.CantiMil += canti1000;
+        this.CalcularMontoTotal();
+    }
+    
+    private void CalcularMontoTotal()
+    {
+        this.MontoTotal = BigDecimal.ZERO;
+        int Calc500 = this.CantiQuinientos * 500;
+        int Calc1000 = this.CantiMil * 1000;
+        this.MontoTotal = MontoTotal.add(new BigDecimal(Calc500));
+        this.MontoTotal = MontoTotal.add(new BigDecimal(Calc1000));
     }
     
 }

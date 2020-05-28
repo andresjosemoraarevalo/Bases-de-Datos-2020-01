@@ -5,7 +5,13 @@
  */
 package jdbc_conexion;
 
+import Interfaz.IGestionPrestamo;
 import Repositorios.RepositorioLibro;
+import Repositorios.RepositorioPrestamo;
+import entidades.Prestamo;
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.Calendar;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -46,8 +52,20 @@ public class JDBC_Conexion extends Application {
      * @param args the command line arguments
      */
         public static void main(String[] args){
+            
+        Date newDate = new Date(Calendar.getInstance().getTime().getTime());
+        Prestamo nuevo = new Prestamo (newDate, 1 , 0 , 0, new BigDecimal(0));
+        Prestamo prestado = new Prestamo (newDate, 1 , 2 , 0, new BigDecimal(1000));
         RepositorioLibro rl = new RepositorioLibro();
-        rl.ImprimirDatos();
+        RepositorioPrestamo r2 = new RepositorioPrestamo();
+        r2.agregarPrestamo(nuevo);
+        r2.ImprimirDatos();
+        System.out.println("Numero Mayor:" + r2.numeroPrestamoMayor());
+        System.out.println("================================");
+        r2.actualizarMonedaEnPrestamo(prestado);
+        r2.ImprimirDatos();
+        
+        //rl.ImprimirDatos();
         
     }
 

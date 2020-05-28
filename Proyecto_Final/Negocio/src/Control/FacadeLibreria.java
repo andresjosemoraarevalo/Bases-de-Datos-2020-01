@@ -10,7 +10,9 @@ import Repositorios.RepositorioLibro;
 import entidades.Libro;
 import entidades.Prestamo;
 import entidades.Denominacion;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,14 +30,21 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.gestionLibro=new RepositorioLibro();
         this.catalogo=new ArrayList<>();
         this.catalogo=this.gestionLibro.CargarLibro();
-    }
-
-    public FacadeLibreria(Prestamo prestamoActual) {
-        this.catalogo = new ArrayList<>();
         this.prestamos = new ArrayList<>();
-        this.prestamoActual = prestamoActual;
-        this.gestionLibro=new RepositorioLibro();
-        
+    }
+    public boolean crearPrestamo(){
+        int contador=0;
+        for (Libro libro : catalogo) {
+            if(libro.getUnidadesDsiponibles()>0){
+                contador++;
+            }
+        }
+        if(contador==0){
+            return false;
+        }
+        Prestamo p=new Prestamo();
+        p.setFecha(java.sql.Date.valueOf(LocalDate.now()));
+        return true;
     }
 
     public Prestamo getPrestamoActual() {
