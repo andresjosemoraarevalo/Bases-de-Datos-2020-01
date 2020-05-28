@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import dto.DTOLinea;
 import entidades.Linea;
 import entidades.Prestamo;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public interface IGestionPrestamo {
    public void actualizarMonedaEnPrestamo(Prestamo aActualizar);
     public int numeroPrestamoMayor();
    public void borrarLinea(Linea aBorrar);
+   public ArrayList<DTOLinea> getLineaDTO (int NumeroDelPrestamo);
    //Para Pruebas...
     public void ImprimirDatos();
 
