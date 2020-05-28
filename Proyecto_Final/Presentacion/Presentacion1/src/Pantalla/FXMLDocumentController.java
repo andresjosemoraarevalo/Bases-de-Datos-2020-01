@@ -35,7 +35,9 @@ public class FXMLDocumentController implements Initializable {
     private Label fecha;
     @FXML
     private ComboBox<String> listaLibros;
-    
+    @FXML
+    private ComboBox<Integer> denominacion;
+  
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -58,6 +60,7 @@ public class FXMLDocumentController implements Initializable {
         
         
         listaLibros.getItems().addAll(FXCollections.observableList(contro.nombreLibros()));
+        denominacion.getItems().addAll(500, 1000);
     }    
     
 }
