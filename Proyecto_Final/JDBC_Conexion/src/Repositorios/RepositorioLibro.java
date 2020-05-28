@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import jdbc_conexion.Constantes;
 /**
  *
- * @author USER
+ * @author El Juan de Pablos.
  */
 public class RepositorioLibro implements Interfaz.IGestionLibro {
     
     
-    
+    //Devuelve un ArrayList de Libros recogidos de la base de datos.
     public ArrayList<Libro> CargarLibro()
     {
         String GetInfoLibro = "select * from libro";
@@ -56,7 +56,7 @@ public class RepositorioLibro implements Interfaz.IGestionLibro {
     return catalogo;
 
     }
-    
+    //Para probar datos. Imprime los datos de los libros.
     public void ImprimirDatos()
     {
         ArrayList<Libro> catalogo = this.CargarLibro();
@@ -65,6 +65,24 @@ public class RepositorioLibro implements Interfaz.IGestionLibro {
             System.out.println("Precio: " + libroCurr.getPrecioBase());
         }
         
+    }
+    //Recibe un libro, y el actualiza su cantidad de Unidades Disponibles.
+    public void actualizarUnidadesDisponiblesLibro (Libro aActualizar)
+    {
+        String elString = "UPDATE Libro SET UnidadesDisponibles = ? WHERE ISBN = ?";
+        String ISBN = aActualizar.getIsbn();
+        int UD = aActualizar.getUnidadesDsiponibles();
+        try(
+          Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
+          PreparedStatement ps = conex.prepareStatement(elString);)
+        {
+            ps.setString(1,ISBN);
+            ps.setInt(2, UD);
+        }
+        catch (SQLException ex) {
+            System.out.println("Error de conexion:" + ex.toString());
+            ex.printStackTrace();
+        }
     }
 
     
