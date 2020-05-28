@@ -142,8 +142,7 @@ public class FXMLDocumentController implements Initializable {
     }
     @FXML
     private void eliminarLinea(){
-        //DTOResumen seleccion;
-        //this.tablaPrestamo
-        
+        ModelTable seleccion = this.tablaPrestamo.getSelectionModel().getSelectedItem();
+        this.tablaPrestamo.getItems().remove(seleccion);
     }
 }
