@@ -26,12 +26,16 @@ import Pantalla.PantallaKiosco;
 import dto.DTOLinea;
 import dto.DTOResumen;
 import entidades.Linea;
+import java.util.List;
+import javafx.collections.ObservableList;
+import javafx.scene.AccessibleAction;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 /**
  *
  * @author andre
@@ -78,7 +82,7 @@ public class FXMLDocumentController implements Initializable {
     TableColumn<ModelTable,Integer> precioCol;
     @FXML
     TableColumn<ModelTable,Integer> subTotalCol;    
-            
+    private ObservableList<ModelTable> lineasTabla = FXCollections.observableArrayList();       
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -119,12 +123,22 @@ public class FXMLDocumentController implements Initializable {
         this.numeroPrestamo.setText(null);
         this.saldoDisponibleLabel.setText(null);
         this.vueltosLabel.setText(null);
+        this.lineasTabla.clear();
         
     }
     @FXML
     private void agregarLinea(){
-        //this.tablaPrestamo=new TableView();
+        this.lineasTabla.clear();
+        List<DTOLinea> lineasPrestamo=this.contro.getDto().getLineas();
+        for (DTOLinea linea : lineasPrestamo) {
+            this.lineasTabla.add(new ModelTable(linea.getLibro().getNombreLibro(), linea.getCantidad(), linea.getTotalLibro(),linea.getSubtotal()));
+        }
+        this.libroCol.setCellValueFactory(new PropertyValueFactory<>("libro"));
+        this.cantidadCol.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
+        this.precioCol.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        this.subTotalCol.setCellValueFactory(new PropertyValueFactory<>("subtotal"));
         
+        this.tablaPrestamo.setItems(lineasTabla);
     }
     @FXML
     private void eliminarLinea(){
