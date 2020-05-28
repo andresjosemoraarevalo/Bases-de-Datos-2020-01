@@ -15,22 +15,38 @@ import java.util.List;
 public class Linea {
     private Libro libroEnPrestamo;
     private Prestamo padre;
-    
+    private int CantidadLibros;
+
     public Linea() {
     }
 
-    public Linea(Libro libroEnPrestamo, Prestamo padre) {
+    public Linea(Libro libroEnPrestamo, Prestamo padre, int CantidadLibros) {
         this.libroEnPrestamo = libroEnPrestamo;
         this.padre = padre;
+        this.CantidadLibros = CantidadLibros;
     }
 
     public Libro getLibroEnPrestamo() {
         return libroEnPrestamo;
     }
 
+    public Prestamo getPrestamoPadre()
+    {
+        return padre;
+    }
+    public int getCantidadLibros()
+    {
+        return CantidadLibros;
+    }
+
     public void setLibroEnPrestamo(Libro libroEnPrestamo) {
         this.libroEnPrestamo = libroEnPrestamo;
     }
-       
-            
+
+    public void setCantidadLibros(int CantidadLibros)
+    {
+        this.CantidadLibros = CantidadLibros;
+    }
+
+
 }
