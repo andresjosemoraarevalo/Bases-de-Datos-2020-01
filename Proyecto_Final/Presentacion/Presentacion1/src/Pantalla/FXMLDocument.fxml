@@ -20,7 +20,7 @@
       <ComboBox fx:id="listaLibros" layoutX="204.0" layoutY="176.0" prefWidth="150.0" promptText="Seleccione un libro..." />
       <Label layoutX="398.0" layoutY="180.0" text="Cantidad" />
       <TextField fx:id="cantidadLibros" layoutX="457.0" layoutY="176.0" prefHeight="25.0" prefWidth="87.0" />
-      <Button fx:id="botonAgregarLinea" layoutX="604.0" layoutY="176.0" mnemonicParsing="false" text="Agregar Línea" />
+      <Button fx:id="botonAgregarLinea" layoutX="604.0" layoutY="176.0" mnemonicParsing="false" onAction="#agregarLinea" text="Agregar Línea" />
       <Label layoutX="26.0" layoutY="246.0" text="Lineas del Prestamo" />
       <Label layoutX="260.0" layoutY="246.0" text="Total Prestamo" />
       <Label fx:id="totalPrestamo" layoutX="432.0" layoutY="246.0" prefHeight="17.0" prefWidth="48.0" />

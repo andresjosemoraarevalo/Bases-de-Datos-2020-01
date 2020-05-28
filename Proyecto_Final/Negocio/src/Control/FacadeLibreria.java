@@ -15,6 +15,8 @@ import entidades.Libro;
 import entidades.Prestamo;
 import entidades.Denominacion;
 import entidades.Linea;
+import entidades.Moneda;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -33,6 +35,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     private IGestionPrestamo gestionPrestamo;
     private DTOResumen dto;
     private static Constates cons;
+    private List<Moneda> monedas;
     public FacadeLibreria() {
         this.gestionLibro=new RepositorioLibro();
         this.gestionPrestamo=new RepositorioPrestamo();
@@ -86,8 +89,26 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         Linea linea = new Linea();
         this.prestamoActual.getLineas().add(linea);
     }
-    
-    public DTOResumen agregarLinea (String libro, int cantidad, DTOResumen dto){
+    public BigDecimal introducirMoneda(int Cantidad, Denominacion Valor)
+    {
+        Moneda aAgregar;
+        if(Valor == Denominacion.QUINIENTOS)
+        {
+            aAgregar = new Moneda(Valor);
+            monedas.add(aAgregar);
+            prestamoActual.añadirACanti500(Cantidad);
+
+        }
+        else if(Valor == Denominacion.MIL)
+        {
+            aAgregar = new Moneda(Valor);
+            monedas.add(aAgregar);
+            prestamoActual.añadirACanti1000(Cantidad);
+        }
+        gestionPrestamo.actualizarMonedaEnPrestamo(prestamoActual);
+        return (prestamoActual.getMontoTotal());
+    }
+    public DTOResumen agregarLinea (String libro, int cantidad){
         crearLinea();
         String verificado = verificarLibro(libro);
         Libro objL = null;
@@ -100,12 +121,12 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
             if (verificado==null){
                 this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1).setLibroEnPrestamo(objL);
                 this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1).setCantidadLibros(cantidad);
-                dto.setLineas((List<DTOLinea>) this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1));
-                dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setCantidad(cantidad);
-                dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setLibro(objL);
-                dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setSubtotal((int) calcularSubtotal(libro));
-                dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setTotalLibro((int) calcularTotal(libro));
-                dto.setAgregar(true);
+                this.dto.setLineas((List<DTOLinea>) this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1));
+                this.dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setCantidad(cantidad);
+                this.dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setLibro(objL);
+                this.dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setSubtotal((int) calcularSubtotal(libro));
+                this.dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setTotalLibro((int) calcularTotal(libro));
+                this.dto.setAgregar(true);
                 
                 return dto;
             }

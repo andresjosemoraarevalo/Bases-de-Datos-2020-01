@@ -17,4 +17,5 @@ public interface IFacadeLibreria {
     public List<Libro> getCatalogo();
     public boolean crearNuevoPrestamo();
     public DTOResumen getDto();
+    public DTOResumen agregarLinea (String libro, int cantidad);
 }

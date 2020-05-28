@@ -20,7 +20,7 @@
       <ComboBox fx:id="listaLibros" layoutX="204.0" layoutY="176.0" prefWidth="150.0" promptText="Seleccione un libro..." />
       <Label layoutX="398.0" layoutY="180.0" text="Cantidad" />
       <TextField fx:id="cantidadLibros" layoutX="457.0" layoutY="176.0" prefHeight="25.0" prefWidth="87.0" />
-      <Button fx:id="botonAgregarLinea" layoutX="604.0" layoutY="176.0" mnemonicParsing="false" text="Agregar Línea" />
+      <Button fx:id="botonAgregarLinea" layoutX="604.0" layoutY="176.0" mnemonicParsing="false" onAction="#agregarLinea" text="Agregar Línea" />
       <Label layoutX="26.0" layoutY="246.0" text="Lineas del Prestamo" />
       <Label layoutX="260.0" layoutY="246.0" text="Total Prestamo" />
       <Label fx:id="totalPrestamo" layoutX="432.0" layoutY="246.0" prefHeight="17.0" prefWidth="48.0" />
@@ -30,10 +30,10 @@
       <ComboBox fx:id="listaMonedas" layoutX="325.0" layoutY="409.0" prefHeight="25.0" prefWidth="77.0" promptText="Select..." />
       <TableView fx:id="tablaPrestamo" layoutX="21.0" layoutY="278.0" prefHeight="120.0" prefWidth="389.0">
         <columns>
-          <TableColumn prefWidth="92.0" text="Libro" />
-          <TableColumn prefWidth="88.0" text="Cantidad" />
-            <TableColumn prefWidth="87.0" text="Precio Libro" />
-            <TableColumn prefWidth="121.0" text="SubTotal" />
+          <TableColumn fx:id="libroCol" prefWidth="92.0" text="Libro" />
+          <TableColumn fx:id="cantidadCol" prefWidth="88.0" text="Cantidad" />
+            <TableColumn fx:id="precioCol" prefWidth="87.0" text="Precio Libro" />
+            <TableColumn fx:id="subTotalCol" prefWidth="121.0" text="SubTotal" />
         </columns>
       </TableView>
       <Button fx:id="botonAgregarMonedas" layoutX="424.0" layoutY="409.0" mnemonicParsing="false" text="Agregar Monedas" />
@@ -43,5 +43,9 @@
       <Label fx:id="vueltosLabel" layoutX="287.0" layoutY="455.0" prefHeight="17.0" prefWidth="40.0" />
       <Label layoutX="544.0" layoutY="463.0" text="Saldo Disponible de Monedas" />
       <Label fx:id="saldoDisponibleLabel" layoutX="592.0" layoutY="484.0" prefHeight="17.0" prefWidth="63.0" />
+      <Button fx:id="botonBuscar" layoutX="643.0" layoutY="34.0" mnemonicParsing="false" text="Buscar" />
+      <Label layoutX="462.0" layoutY="14.0" text="Buscar por número de prestamo" />
+      <TextField fx:id="buscarNumeroPrestamo" layoutX="462.0" layoutY="34.0" />
+      <Button fx:id="botonEliminarLinea" layoutX="462.0" layoutY="326.0" mnemonicParsing="false" onAction="#eliminarLinea" text="Eliminar Linea" />
     </children>
 </AnchorPane>

@@ -128,11 +128,13 @@ public class FXMLDocumentController implements Initializable {
     }
     @FXML
     private void agregarLinea(){
+        this.contro.agregarLinea(this.listaLibros.getSelectionModel().getSelectedItem(), Integer.valueOf(this.cantidadLibros.getText()));
         this.lineasTabla.clear();
         List<DTOLinea> lineasPrestamo=this.contro.getDto().getLineas();
         for (DTOLinea linea : lineasPrestamo) {
             this.lineasTabla.add(new ModelTable(linea.getLibro().getNombreLibro(), linea.getCantidad(), linea.getTotalLibro(),linea.getSubtotal()));
         }
+        System.out.println(lineasPrestamo.toString());
         this.libroCol.setCellValueFactory(new PropertyValueFactory<>("libro"));
         this.cantidadCol.setCellValueFactory(new PropertyValueFactory<>("cantidad"));
         this.precioCol.setCellValueFactory(new PropertyValueFactory<>("precio"));

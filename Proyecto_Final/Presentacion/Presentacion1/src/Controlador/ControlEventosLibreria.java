@@ -30,6 +30,9 @@ public class ControlEventosLibreria {
     public List<Libro> cargarLibros(){
         return this.interfazLibreria.getCatalogo();
     }
+    public void agregarLinea (String libro, int cantidad){
+        this.interfazLibreria.agregarLinea(libro, cantidad);
+    }
     public List<String> nombreLibros(){
         List<String> nombreLibros = new ArrayList();
         List<Libro> aux = new ArrayList();
