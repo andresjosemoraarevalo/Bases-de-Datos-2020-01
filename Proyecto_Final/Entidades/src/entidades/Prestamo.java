@@ -8,13 +8,14 @@ package entidades;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.Date;
 
 /**
  *
  * @author Andres Jose Mora, Oscar Andres Pacheco y Juan Pablo Amorocho
  */
 public class Prestamo {
-    private LocalDateTime fecha;
+    private Date fecha;
     private int numero;
     private List<Linea> lineas = new ArrayList<>();
     private List<Moneda> pagoMonedas;
@@ -22,7 +23,7 @@ public class Prestamo {
     public Prestamo() {
     }
 
-    public Prestamo(LocalDateTime fecha, int numero) {
+    public Prestamo(Date fecha, int numero) {
         this.fecha = fecha;
         this.numero = numero;
         this.pagoMonedas = new ArrayList<>();
@@ -36,11 +37,11 @@ public class Prestamo {
         this.numero = numero;
     }
 
-    public LocalDateTime getFecha() {
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDateTime fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
