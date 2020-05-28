@@ -40,6 +40,9 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.prestamos = new ArrayList<>();
         this.dto=new DTOResumen();
     }
+    public void persisitirPrestamo(){
+        this.gestionPrestamo.agregarPrestamo(this.prestamoActual);
+    }
     public boolean crearNuevoPrestamo(){
         int contador=0;
         DTOResumen dto=new DTOResumen();
@@ -63,9 +66,10 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.dto.setSaldoMonedas(0);
         this.dto.setCantidadVueltos(0);
         this.dto.setNumeroPrestamo(numPrestamo);
+        this.persisitirPrestamo();
         return true;
     }
-
+    
     public Prestamo getPrestamoActual() {
         return prestamoActual;
     }

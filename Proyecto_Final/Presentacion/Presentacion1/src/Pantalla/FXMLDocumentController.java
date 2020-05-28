@@ -25,7 +25,9 @@ import javafx.scene.control.Label;
 import Pantalla.PantallaKiosco;
 import dto.DTOResumen;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
+import javax.swing.text.TableView;
 /**
  *
  * @author andre
@@ -48,6 +50,22 @@ public class FXMLDocumentController implements Initializable {
     private Label saldoDisponibleLabel;
     @FXML
     private Label numeroPrestamo;
+    @FXML
+    private TableView tablaPrestamo;
+    @FXML
+    private TextField cantidadLibros;
+    @FXML
+    private TextField cantidadMonedas;
+    @FXML
+    private Button botonAgregarMonedas;
+    @FXML
+    private Button botonTerminarPrestamo;
+    @FXML
+    private Button botonGenerarReporte;
+    @FXML
+    private Button botonBuscar;
+    @FXML
+    private TextField buscarNumeroPrestamo;
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");

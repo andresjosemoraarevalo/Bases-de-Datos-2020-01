@@ -8,11 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Presentacion.jar" size="6070" download="eager" />
+    <jar href="Presentacion.jar" size="6114" download="eager" />
     <jar href="lib\DTO.jar" size="4469" download="eager" />
     <jar href="lib\Entidades.jar" size="4524" download="eager" />
-    <jar href="lib\JDBC_Conexion.jar" size="12210" download="eager" />
-    <jar href="lib\Negocio.jar" size="3235" download="eager" />
+    <jar href="lib\JDBC_Conexion.jar" size="22515" download="eager" />
+    <jar href="lib\Negocio.jar" size="3302" download="eager" />
     <jar href="lib\ojdbc7.jar" size="3397734" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Presentacion" >
