@@ -123,6 +123,64 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
         return Resultado;
     }
     
+    public ArrayList<Linea> getLineas(int Numero_Prestamo)
+    {
+        ArrayList<Linea> Resultado = new ArrayList<>();
+        String GetInfoLinea = "select * from Lineas";
+        Linea aAgregar;
+        //LIBRO...
+        RepositorioLibro rt = new RepositorioLibro();
+        ArrayList<Libro> Library = rt.CargarLibro();
+        Libro elAgregadoLibro = new Libro();
+        //PRESTAMO...
+        ArrayList<Prestamo> PresLibrary = this.getPrestamo();
+        Prestamo elAgregadoPrestamo = new Prestamo();
+        //DATOS...
+        String ISBN;
+        int Numero, Cantidad;
+        
+        try(Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
+    PreparedStatement ps = conex.prepareStatement(GetInfoLinea);
+    ResultSet rs = ps.executeQuery();)
+        {
+          while (rs.next())
+        {
+            Numero = rs.getInt("Numero_Prestamo");
+            if(Numero == Numero_Prestamo)
+            {
+  
+            ISBN = rs.getString("ISBN_Libro");
+            for (Libro libroCurr : Library)
+            {
+                if(ISBN.equals(libroCurr.getIsbn()))
+                {
+                    elAgregadoLibro = libroCurr;
+                    break;
+                }
+            }
+            
+            for(Prestamo prestamoCurr : PresLibrary)
+            {
+                if(prestamoCurr.getNumero()==Numero)
+                {
+                    elAgregadoPrestamo = prestamoCurr;
+                    break;
+                }
+            }
+            Cantidad = rs.getInt("Cantidad");
+            aAgregar = new Linea(elAgregadoLibro, elAgregadoPrestamo, Cantidad);
+            Resultado.add(aAgregar);
+            }
+            
+        }  
+        }
+        catch (SQLException ex) {
+            System.out.println("Error de conexion:" + ex.toString());
+            ex.printStackTrace();
+        }
+        return Resultado;
+    }
+    
         public int numeroPrestamoMayor()
     {
         int resultado = -1;

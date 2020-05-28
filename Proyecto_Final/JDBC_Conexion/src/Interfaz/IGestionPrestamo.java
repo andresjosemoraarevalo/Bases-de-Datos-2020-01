@@ -24,5 +24,6 @@ public interface IGestionPrestamo {
    public ArrayList<DTOLinea> getLineaDTO (int NumeroDelPrestamo);
    //Para Pruebas...
     public void ImprimirDatos();
+      public ArrayList<Linea> getLineas(int Numero_Prestamo);
 
 }
