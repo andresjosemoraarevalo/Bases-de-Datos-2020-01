@@ -18,5 +18,9 @@ public enum Denominacion {
     private Denominacion(int valor) {
         this.valor = valor;
     }
+    public int getValor ()
+    {
+        return this.valor;
+    }
     
 }
