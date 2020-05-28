@@ -84,8 +84,5 @@ public class RepositorioLibro implements Interfaz.IGestionLibro {
             ex.printStackTrace();
         }
     }
-
-    
-    
     
 }

@@ -24,6 +24,9 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     IGestionLibro gestionLibro;
 
     public FacadeLibreria() {
+        this.gestionLibro=new RepositorioLibro();
+        this.catalogo=new ArrayList<>();
+        this.catalogo=this.gestionLibro.CargarLibro();
     }
 
     public FacadeLibreria(Prestamo prestamoActual) {
@@ -31,7 +34,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.prestamos = new ArrayList<>();
         this.prestamoActual = prestamoActual;
         this.gestionLibro=new RepositorioLibro();
-        this.catalogo=this.gestionLibro.CargarLibro();
+        
     }
 
     public Prestamo getPrestamoActual() {

@@ -19,6 +19,7 @@ public class ControlEventosLibreria {
     private IFacadeLibreria interfazLibreria;
 
     public ControlEventosLibreria() {
+        this.interfazLibreria = new FacadeLibreria();
     }
 
     public ControlEventosLibreria(IFacadeLibreria interfazLibreria) {

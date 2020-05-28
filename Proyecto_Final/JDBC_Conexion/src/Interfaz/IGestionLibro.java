@@ -17,5 +17,5 @@ public interface IGestionLibro {
     //Para probar datos...
     public void ImprimirDatos();
     public void actualizarUnidadesDisponiblesLibro (Libro aActualizar);
-    
+
 }

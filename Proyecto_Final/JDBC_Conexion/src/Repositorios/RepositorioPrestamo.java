@@ -73,7 +73,7 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
     
     public void agregarLinea(Linea aAgregar)
     {
-         String SQL_INSERT = "INSERT INTO Linea (ISBN_libro, Numero_Prestamo) VALUES (?,?)";
+         String SQL_INSERT = "INSERT INTO Linea (ISBN_libro, Numero_Prestamo) VALUES (?,?,?)";
          String ISBN_libro;
          int Numero_Prestamo, rowAff, Cantidad;
         ISBN_libro = aAgregar.getLibroEnPrestamo().getIsbn();
@@ -94,11 +94,64 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
         }
     }
     
+    public void borrarLinea(Linea aBorrar)
+    {
+        String SQL_DELETE = "DELETE FROM Lineas WHERE ISBN_libro = ? AND Numero_Prestamo = ?";
+        String ISBN_Libro = aBorrar.getLibroEnPrestamo().getIsbn();
+        int Numero_Prestamo = aBorrar.getPrestamoPadre().getNumero(), rowAff;
+        try(
+          Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
+          PreparedStatement ps = conex.prepareStatement(SQL_DELETE);)
+                {
+                    ps.setString(1, ISBN_Libro);
+                    ps.setInt(2, Numero_Prestamo);
+                    rowAff = ps.executeUpdate();
+                }
+            catch (SQLException ex) {
+            System.out.println("Error de conexion:" + ex.toString());
+            ex.printStackTrace();
+        }
+    }
+    
+    public void terminarPrestamo()
+    {
+        terminarTodasLineas();
+        terminarTodasMonedas();
+    }
+    
+    private void terminarTodasLineas()
+    {
+        String SQL_DELETE = "DELETE FROM Lineas";
+        int rowAff;
+        try(
+          Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
+          PreparedStatement ps = conex.prepareStatement(SQL_DELETE);)
+                {
+                    rowAff = ps.executeUpdate();
+                }
+            catch (SQLException ex) {
+            System.out.println("Error de conexion:" + ex.toString());
+            ex.printStackTrace();
+        }
+    }
+     private void terminarTodasMonedas()
+    {
+        String SQL_DELETE = "DELETE FROM Monedas";
+        int rowAff;
+        try(
+          Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
+          PreparedStatement ps = conex.prepareStatement(SQL_DELETE);)
+                {
+                    rowAff = ps.executeUpdate();
+                }
+            catch (SQLException ex) {
+            System.out.println("Error de conexion:" + ex.toString());
+            ex.printStackTrace();
+        }
+    }
+    
     public void agregarMoneda(Moneda aAgregar)
     {
         //PENDING...
     }
-    
-    
-    
 }

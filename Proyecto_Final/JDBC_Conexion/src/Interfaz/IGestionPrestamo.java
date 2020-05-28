@@ -19,5 +19,7 @@ public interface IGestionPrestamo {
    public ArrayList<Prestamo> getPrestamo();
    public void agregarLinea(Linea aAgregar);
    public void agregarMoneda(Moneda aAgregar);
+   public void borrarLinea(Linea aBorrar);
+   public void terminarPrestamo();
 
 }
