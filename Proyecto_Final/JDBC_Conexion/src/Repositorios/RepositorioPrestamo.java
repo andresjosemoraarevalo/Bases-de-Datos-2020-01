@@ -200,7 +200,7 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
     
     public void agregarLinea(Linea aAgregar)
     {
-         String SQL_INSERT = "INSERT INTO Linea (ISBN_libro, Numero_Prestamo) VALUES (?,?,?)";
+         String SQL_INSERT = "INSERT INTO Lineas (ISBN_libro, Numero_Prestamo) VALUES (?,?,?)";
          String ISBN_libro;
          int Numero_Prestamo, rowAff, Cantidad;
         ISBN_libro = aAgregar.getLibroEnPrestamo().getIsbn();
