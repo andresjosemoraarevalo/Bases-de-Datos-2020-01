@@ -37,4 +37,20 @@ public class ControlEventosLibreria {
         }
         return nombreLibros;
     }
+    public void agregarLinea (Libro libro, int cantidad){
+        //Verificar libro
+        
+        //Verificar existencia
+        
+        //Crear linea
+        
+        //Calcular el valor del libro
+        
+        //Calcular subtotal de una linea
+        
+        //calcular el total del prestamo
+        
+        //Crear DTO resumen
+    }
+    
 }
