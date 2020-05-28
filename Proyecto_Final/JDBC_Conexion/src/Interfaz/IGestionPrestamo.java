@@ -5,7 +5,10 @@
  */
 package Interfaz;
 
+import entidades.Linea;
+import entidades.Moneda;
 import entidades.Prestamo;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,5 +16,8 @@ import entidades.Prestamo;
  */
 public interface IGestionPrestamo {
    public void agregarPrestamo(Prestamo aAgregar);
-    
+   public ArrayList<Prestamo> getPrestamo();
+   public void agregarLinea(Linea aAgregar);
+   public void agregarMoneda(Moneda aAgregar);
+
 }
