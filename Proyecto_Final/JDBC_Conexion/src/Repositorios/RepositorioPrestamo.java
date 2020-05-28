@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import entidades.Prestamo;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import jdbc_conexion.Constantes;
@@ -23,7 +24,7 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
     
     public void agregarPrestamo(Prestamo aAgregar)
     {
-        String SQL_INSERT = "INSERT INTO Prestamo (LocalDateTime, Numero) VALUES (?,?)";
+        String SQL_INSERT = "INSERT INTO Prestamo (LocalDateTime, Numero, CantiQuinientos, CantiMil, MontoTotal) VALUES (?,?, ?, ?, ?)";
         int rowAff;
         if(aAgregar != null)
         {
@@ -34,6 +35,9 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
           {
           ps.setDate(1,aAgregar.getFecha());
           ps.setInt(2,aAgregar.getNumero());
+          ps.setInt(3, 0);
+          ps.setInt(4, 0);
+          ps.setBigDecimal(5, BigDecimal.ZERO);
           rowAff = ps.executeUpdate();
               
           }
@@ -44,13 +48,15 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
        }
     }
     
+
     public ArrayList<Prestamo> getPrestamo()
     {
         ArrayList<Prestamo> Resultado = new ArrayList<>();
         String GetInfoPrestamo = "select * from Prestamo";
         Prestamo aAgregar;
         Date LocalDateTime;
-        int Numero;
+        int Numero, CantiQ, CantiM;
+        BigDecimal Total;
         
         try(Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
     PreparedStatement ps = conex.prepareStatement(GetInfoPrestamo);
@@ -60,7 +66,10 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
         {
             LocalDateTime = rs.getDate("LocalDateTime");
             Numero = rs.getInt("Numero");
-            aAgregar = new Prestamo(LocalDateTime, Numero);
+            CantiQ = rs.getInt("CantiQuinientos");
+            CantiM = rs.getInt("CantiMil");
+            Total = rs.getBigDecimal("MontoTotal");
+            aAgregar = new Prestamo(LocalDateTime, Numero, CantiQ, CantiM, Total);
             Resultado.add(aAgregar);
         }  
         }
@@ -70,6 +79,23 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
         }
         return Resultado;
     }
+    
+        public int numeroPrestamoMayor()
+    {
+        int resultado = -1;
+        ArrayList<Prestamo> Buscar = getPrestamo();
+        for (Prestamo prestamoCurr : Buscar)
+        {
+            if(prestamoCurr.getNumero()>resultado)
+            {
+                resultado = prestamoCurr.getNumero();
+            }
+        }
+        return resultado;
+        
+    }
+    
+
     
     public void agregarLinea(Linea aAgregar)
     {
@@ -116,7 +142,6 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
     public void terminarPrestamo()
     {
         terminarTodasLineas();
-        terminarTodasMonedas();
     }
     
     private void terminarTodasLineas()
@@ -134,24 +159,38 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
             ex.printStackTrace();
         }
     }
-     private void terminarTodasMonedas()
+
+    
+    public void actualizarMonedaEnPrestamo(Prestamo aActualizar)
     {
-        String SQL_DELETE = "DELETE FROM Monedas";
-        int rowAff;
+        String elString = "UPDATE Prestamo SET CantiQuinientos = ? AND CantiMil = ? AND MontoTotal = ? WHERE Numero = ?";
+        int Numero = aActualizar.getNumero(),CantiQ = aActualizar.getCantiMonedas500();
+        int CantiM = aActualizar.getCantiMonedas1000(), rowAff;
+        BigDecimal Monto = aActualizar.getMontoTotal();
+
         try(
           Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
-          PreparedStatement ps = conex.prepareStatement(SQL_DELETE);)
-                {
-                    rowAff = ps.executeUpdate();
-                }
-            catch (SQLException ex) {
+          PreparedStatement ps = conex.prepareStatement(elString);)
+        {
+            ps.setInt(1,CantiQ);
+            ps.setInt(2, CantiM);
+            ps.setBigDecimal(3, Monto);
+            ps.setInt(4, Numero);
+            rowAff = ps.executeUpdate();
+        }
+        catch (SQLException ex) {
             System.out.println("Error de conexion:" + ex.toString());
             ex.printStackTrace();
         }
     }
     
-    public void agregarMoneda(Moneda aAgregar)
+    public void ImprimirDatos()
     {
-        //PENDING...
+        ArrayList<Prestamo> catalogo = this.getPrestamo();
+        for (Prestamo libroCurr : catalogo) {
+            System.out.println("Fecha: " + libroCurr.getFecha());
+            System.out.println("Numero: " + libroCurr.getNumero());
+        }
+        
     }
 }

@@ -6,7 +6,6 @@
 package Interfaz;
 
 import entidades.Linea;
-import entidades.Moneda;
 import entidades.Prestamo;
 import java.util.ArrayList;
 
@@ -18,8 +17,11 @@ public interface IGestionPrestamo {
    public void agregarPrestamo(Prestamo aAgregar);
    public ArrayList<Prestamo> getPrestamo();
    public void agregarLinea(Linea aAgregar);
-   public void agregarMoneda(Moneda aAgregar);
+   public void actualizarMonedaEnPrestamo(Prestamo aActualizar);
+    public int numeroPrestamoMayor();
    public void borrarLinea(Linea aBorrar);
    public void terminarPrestamo();
+   //Para Pruebas...
+    public void ImprimirDatos();
 
 }
