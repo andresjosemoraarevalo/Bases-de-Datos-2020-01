@@ -139,26 +139,7 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
         }
     }
     
-    public void terminarPrestamo()
-    {
-        terminarTodasLineas();
-    }
-    
-    private void terminarTodasLineas()
-    {
-        String SQL_DELETE = "DELETE FROM Lineas";
-        int rowAff;
-        try(
-          Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
-          PreparedStatement ps = conex.prepareStatement(SQL_DELETE);)
-                {
-                    rowAff = ps.executeUpdate();
-                }
-            catch (SQLException ex) {
-            System.out.println("Error de conexion:" + ex.toString());
-            ex.printStackTrace();
-        }
-    }
+
 
     
     public void actualizarMonedaEnPrestamo(Prestamo aActualizar)

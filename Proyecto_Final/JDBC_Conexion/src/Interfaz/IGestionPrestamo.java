@@ -20,7 +20,6 @@ public interface IGestionPrestamo {
    public void actualizarMonedaEnPrestamo(Prestamo aActualizar);
     public int numeroPrestamoMayor();
    public void borrarLinea(Linea aBorrar);
-   public void terminarPrestamo();
    //Para Pruebas...
     public void ImprimirDatos();
 
