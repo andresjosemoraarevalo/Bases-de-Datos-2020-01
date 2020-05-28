@@ -5,10 +5,13 @@
  */
 package Controlador;
 
+import Interfaz.IFacadeLibreria;
+
 /**
  *
  * @author andre
  */
 public class ControlEventosLibreria {
+    private IFacadeLibreria interfazLibreria;
     
 }
