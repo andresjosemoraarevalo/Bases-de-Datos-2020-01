@@ -28,14 +28,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.gestionLibro=new RepositorioLibro();
         this.catalogo=new ArrayList<>();
         this.catalogo=this.gestionLibro.CargarLibro();
-    }
-
-    public FacadeLibreria(Prestamo prestamoActual) {
-        this.catalogo = new ArrayList<>();
         this.prestamos = new ArrayList<>();
-        this.prestamoActual = prestamoActual;
-        this.gestionLibro=new RepositorioLibro();
-        
     }
 
     public Prestamo getPrestamoActual() {
