@@ -13,12 +13,12 @@ public class ModelTable {
     private String libro;
     private int cantidad;
     private int precioLibro;
-    private float subTotal;
+    private int subTotal;
     
     public ModelTable() {
     }
 
-    public ModelTable(String libro, int cantidad, int precioLibro, float subTotal) {
+    public ModelTable(String libro, int cantidad, int precioLibro, int subTotal) {
         this.libro = libro;
         this.cantidad = cantidad;
         this.precioLibro = precioLibro;
@@ -49,11 +49,11 @@ public class ModelTable {
         this.cantidad = cantidad;
     }
 
-    public float getSubTotal() {
+    public int getSubTotal() {
         return subTotal;
     }
 
-    public void setSubTotal(float subTotal) {
+    public void setSubTotal(int subTotal) {
         this.subTotal = subTotal;
     }
     

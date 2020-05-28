@@ -121,7 +121,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
             if (verificado==null){
                 this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1).setLibroEnPrestamo(objL);
                 this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1).setCantidadLibros(cantidad);
-                this.dto.setLineas((List<DTOLinea>) this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1));
+                this.dto.getLineas().add(new DTOLinea());
                 this.dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setCantidad(cantidad);
                 this.dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setLibro(objL);
                 this.dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setSubtotal((int) calcularSubtotal(libro));

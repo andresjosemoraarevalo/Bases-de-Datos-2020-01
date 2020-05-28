@@ -18,6 +18,7 @@ public class DTOLinea {
     private int subtotal;
 
     public DTOLinea() {
+        this.libro= new Libro();
     }
 
     public DTOLinea(Libro libro, int cantidad, int totalLibro, int subtotal) {

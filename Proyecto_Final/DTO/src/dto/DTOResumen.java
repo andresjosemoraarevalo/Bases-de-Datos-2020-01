@@ -6,6 +6,7 @@
 package dto;
 
 import entidades.Linea;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,12 +21,14 @@ public class DTOResumen {
     private int saldoMonedas;
     private int cantidadVueltos; 
     private int numeroPrestamo;
+    
     public DTOResumen() {
+        this.Lineas=new ArrayList<>();
     }
 
     public DTOResumen(String mensaje, List<DTOLinea> Lineas, boolean agregar, int totalPrestamo, int saldoMonedas, int cantidadVueltos) {
         this.mensaje = mensaje;
-        this.Lineas = Lineas;
+        this.Lineas = new ArrayList<>();
         this.agregar = agregar;
         this.totalPrestamo = totalPrestamo;
         this.saldoMonedas = saldoMonedas;
