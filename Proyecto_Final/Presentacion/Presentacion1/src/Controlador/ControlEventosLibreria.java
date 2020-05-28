@@ -27,4 +27,13 @@ public class ControlEventosLibreria {
     public List<Libro> cargarLibros(){
         return this.interfazLibreria.getCatalogo();
     }
+    public List<String> nombreLibros(){
+        List<String> nombreLibros = new ArrayList();
+        List<Libro> aux = new ArrayList();
+        aux = this.cargarLibros();
+        for (Libro libro : aux) {
+            nombreLibros.add(libro.getNombreLibro());
+        }
+        return nombreLibros;
+    }
 }

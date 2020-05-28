@@ -5,6 +5,7 @@
  */
 package Pantalla;
 
+import Controlador.ControlEventosLibreria;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +17,6 @@ import javafx.stage.Stage;
  * @author Andres Jose Mora, Oscar Andres Pacheco y Juan Pablo Amorocho
  */
 public class PantallaKiosco extends Application {
-    
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));

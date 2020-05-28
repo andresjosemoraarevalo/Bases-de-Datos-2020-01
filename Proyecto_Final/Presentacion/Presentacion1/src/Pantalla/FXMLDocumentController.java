@@ -5,6 +5,7 @@
  */
 package Pantalla;
 
+import Controlador.ControlEventosLibreria;
 import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.time;
 import java.net.URL;
 import javafx.util.Duration;
@@ -15,23 +16,25 @@ import java.util.ResourceBundle;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import Pantalla.PantallaKiosco;
 /**
  *
  * @author andre
  */
 public class FXMLDocumentController implements Initializable {
-    
+    private ControlEventosLibreria contro = new ControlEventosLibreria();
     @FXML
     private Label label;
     @FXML
     private Label fecha;
     @FXML
-    private ComboBox listaLibros;
+    private ComboBox<String> listaLibros;
     
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -52,6 +55,9 @@ public class FXMLDocumentController implements Initializable {
         }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
         clock.play();
+        
+        
+        listaLibros.getItems().addAll(FXCollections.observableList(contro.nombreLibros()));
     }    
     
 }

@@ -8,8 +8,15 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Presentacion.jar" size="4370" download="eager" />
+    <jar href="Presentacion.jar" size="5280" download="eager" />
+    <jar href="lib\Entidades.jar" size="4042" download="eager" />
+    <jar href="lib\JDBC_Conexion.jar" size="16696" download="eager" />
+    <jar href="lib\Negocio.jar" size="2464" download="eager" />
+    <jar href="lib\ojdbc7.jar" size="3397734" download="eager" />
   </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Presentacion" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
   <jfx:javafx-desc  width="800" height="600" main-class="Pantalla.PantallaKiosco"  name="Presentacion" />
   <update check="always"/>
 </jnlp>
