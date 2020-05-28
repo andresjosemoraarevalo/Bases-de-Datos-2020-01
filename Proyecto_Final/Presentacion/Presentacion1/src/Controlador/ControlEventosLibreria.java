@@ -10,6 +10,7 @@ import Interfaz.IFacadeLibreria;
 import entidades.Libro;
 import java.util.ArrayList;
 import java.util.List;
+import dto.DTOLinea;
 
 /**
  *
@@ -37,7 +38,7 @@ public class ControlEventosLibreria {
         }
         return nombreLibros;
     }
-    public void agregarLinea (Libro libro, int cantidad){
+    public DTOLinea agregarLinea (Libro libro, int cantidad){
         //Verificar libro
         
         //Verificar existencia
