@@ -18,7 +18,5 @@ public class DTOResumen {
         boolean agregar;
         int totalPrestamo;
         int saldoMonedas;
-        int cantidadVueltos;
-        
-        
+        int cantidadVueltos; 
 }

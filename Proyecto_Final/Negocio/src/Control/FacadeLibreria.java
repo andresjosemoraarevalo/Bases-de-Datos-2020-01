@@ -32,7 +32,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.catalogo=this.gestionLibro.CargarLibro();
         this.prestamos = new ArrayList<>();
     }
-    public boolean crearPrestamo(){
+    public boolean crearNuevoPrestamo(){
         int contador=0;
         for (Libro libro : catalogo) {
             if(libro.getUnidadesDsiponibles()>0){
