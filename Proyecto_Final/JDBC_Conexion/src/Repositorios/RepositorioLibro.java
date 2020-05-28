@@ -71,13 +71,14 @@ public class RepositorioLibro implements Interfaz.IGestionLibro {
     {
         String elString = "UPDATE Libro SET UnidadesDisponibles = ? WHERE ISBN = ?";
         String ISBN = aActualizar.getIsbn();
-        int UD = aActualizar.getUnidadesDsiponibles();
+        int UD = aActualizar.getUnidadesDsiponibles(), rowAff;
         try(
           Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
           PreparedStatement ps = conex.prepareStatement(elString);)
         {
             ps.setString(1,ISBN);
             ps.setInt(2, UD);
+            rowAff = ps.executeUpdate();
         }
         catch (SQLException ex) {
             System.out.println("Error de conexion:" + ex.toString());

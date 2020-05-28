@@ -163,7 +163,7 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
     
     public void actualizarMonedaEnPrestamo(Prestamo aActualizar)
     {
-        String elString = "UPDATE Prestamo SET CantiQuinientos = ? AND CantiMil = ? AND MontoTotal = ? WHERE Numero = ?";
+        String elString = "UPDATE Prestamo SET CantiQuinientos = ?, CantiMil = ?, MontoTotal = ? WHERE Numero = ?";
         int Numero = aActualizar.getNumero(),CantiQ = aActualizar.getCantiMonedas500();
         int CantiM = aActualizar.getCantiMonedas1000(), rowAff;
         BigDecimal Monto = aActualizar.getMontoTotal();
@@ -183,13 +183,15 @@ public class RepositorioPrestamo implements Interfaz.IGestionPrestamo{
             ex.printStackTrace();
         }
     }
-    
+    //PARA PROBAR...
     public void ImprimirDatos()
     {
         ArrayList<Prestamo> catalogo = this.getPrestamo();
         for (Prestamo libroCurr : catalogo) {
             System.out.println("Fecha: " + libroCurr.getFecha());
             System.out.println("Numero: " + libroCurr.getNumero());
+            System.out.println("Monto: " + libroCurr.getMontoTotal());
+            System.out.println("500: " + libroCurr.getCantiMonedas500());
         }
         
     }
