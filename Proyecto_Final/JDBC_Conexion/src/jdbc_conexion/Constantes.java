@@ -7,7 +7,7 @@ package jdbc_conexion;
 
 /**
  *
- * @author USER
+ * @author Andres Jose Mora, Oscar Andres Pacheco y Juan Pablo Amorocho
  */
 public class Constantes {
     public static final String USERNAME = "is201700";
