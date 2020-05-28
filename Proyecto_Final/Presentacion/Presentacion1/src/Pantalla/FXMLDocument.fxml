@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -8,7 +11,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pantalla.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Pantalla.FXMLDocumentController">
     <children>
         <Label fx:id="label" layoutX="26.0" layoutY="38.0" minHeight="16" minWidth="69" text="KIOSCO LIBROS " />
       <Button fx:id="BotonNuevoPrestamo" layoutX="279.0" layoutY="34.0" mnemonicParsing="false" text="Nuevo Prestamo" />
@@ -17,7 +20,7 @@
       <Label layoutX="26.0" layoutY="117.0" text="Número del Préstamo" />
       <Label fx:id="numeroPrestamo" layoutX="204.0" layoutY="117.0" prefHeight="17.0" prefWidth="54.0" />
       <Label layoutX="26.0" layoutY="180.0" text="Selección de Libro" />
-      <ComboBox fx:id="listaLibros" layoutX="204.0" layoutY="176.0" prefWidth="150.0" />
+      <ComboBox fx:id="listaLibros" layoutX="204.0" layoutY="176.0" prefWidth="150.0" promptText="Seleccione un libro..." />
       <Label layoutX="398.0" layoutY="180.0" text="Cantidad" />
       <TextField fx:id="cantidadLibros" layoutX="457.0" layoutY="176.0" prefHeight="25.0" prefWidth="87.0" />
       <Button fx:id="botonAgregarLinea" layoutX="604.0" layoutY="176.0" mnemonicParsing="false" text="Agregar Línea" />
@@ -27,7 +30,7 @@
       <Label layoutX="22.0" layoutY="413.0" text="Cantidad Monedas" />
       <TextField fx:id="cantidadMonedas" layoutX="142.0" layoutY="409.0" prefHeight="25.0" prefWidth="63.0" />
       <Label layoutX="237.0" layoutY="413.0" text="Denominacion" />
-      <ComboBox fx:id="listaMonedas" layoutX="325.0" layoutY="409.0" prefHeight="25.0" prefWidth="77.0" />
+      <ComboBox fx:id="listaMonedas" layoutX="325.0" layoutY="409.0" prefHeight="25.0" prefWidth="77.0" promptText="Select..." />
       <TableView fx:id="tablaPrestamo" layoutX="21.0" layoutY="278.0" prefHeight="120.0" prefWidth="389.0">
         <columns>
           <TableColumn prefWidth="92.0" text="Libro" />

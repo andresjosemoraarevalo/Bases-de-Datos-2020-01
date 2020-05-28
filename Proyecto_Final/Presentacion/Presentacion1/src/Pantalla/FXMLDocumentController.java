@@ -36,7 +36,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private ComboBox<String> listaLibros;
     @FXML
-    private ComboBox<Integer> denominacion;
+    private ComboBox<Integer> listaMonedas;
   
     @FXML
     private void handleButtonAction(ActionEvent event) {
@@ -60,7 +60,7 @@ public class FXMLDocumentController implements Initializable {
         
         
         listaLibros.getItems().addAll(FXCollections.observableList(contro.nombreLibros()));
-        denominacion.getItems().addAll(500, 1000);
+        listaMonedas.getItems().addAll(500, 1000);
     }    
     
 }
