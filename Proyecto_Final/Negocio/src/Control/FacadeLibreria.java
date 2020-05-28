@@ -6,7 +6,9 @@
 package Control;
 
 import Interfaz.IGestionLibro;
+import Interfaz.IGestionPrestamo;
 import Repositorios.RepositorioLibro;
+import Repositorios.RepositorioPrestamo;
 import entidades.Libro;
 import entidades.Prestamo;
 import entidades.Denominacion;
@@ -25,9 +27,11 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     private List<Prestamo> prestamos;
     private Prestamo prestamoActual;
     IGestionLibro gestionLibro;
+    IGestionPrestamo gestionPrestamo;
 
     public FacadeLibreria() {
         this.gestionLibro=new RepositorioLibro();
+        this.gestionPrestamo=new RepositorioPrestamo();
         this.catalogo=new ArrayList<>();
         this.catalogo=this.gestionLibro.CargarLibro();
         this.prestamos = new ArrayList<>();
@@ -44,6 +48,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         }
         Prestamo p=new Prestamo();
         p.setFecha(java.sql.Date.valueOf(LocalDate.now()));
+        //p.setNumero(gestionPrestamo.);
         return true;
     }
 
