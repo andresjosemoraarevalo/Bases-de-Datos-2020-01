@@ -14,8 +14,9 @@ import java.util.List;
  *
  * @author andre
  */
-public class FacadeLibreria {
+public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     private List<Libro> catalogo;
+    
     private List<Prestamo> prestamos;
     private Prestamo prestamoActual;
 

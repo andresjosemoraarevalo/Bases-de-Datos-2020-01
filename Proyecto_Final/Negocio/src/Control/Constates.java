@@ -14,7 +14,7 @@ public class Constates {
     private static final double VALOR_VIDEO=0;
     private static final String RUTA_ARCHIVO_LIBROS="a";
     private static final String RUTA_REPORTE="a";
-
+    
     public static double getVALOR_IMAGEN() {
         return VALOR_IMAGEN;
     }
