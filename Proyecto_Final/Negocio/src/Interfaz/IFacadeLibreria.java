@@ -5,10 +5,13 @@
  */
 package Interfaz;
 
+import entidades.Libro;
+import java.util.List;
+
 /**
  *
  * @author andre
  */
 public interface IFacadeLibreria {
-    
+    public List<Libro> getCatalogo();
 }

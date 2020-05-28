@@ -5,6 +5,8 @@
  */
 package Control;
 
+import Interfaz.IGestionLibro;
+import Repositorios.RepositorioLibro;
 import entidades.Libro;
 import entidades.Prestamo;
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     
     private List<Prestamo> prestamos;
     private Prestamo prestamoActual;
+    IGestionLibro gestionLibro;
 
     public FacadeLibreria() {
     }
@@ -27,6 +30,8 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.catalogo = new ArrayList<>();
         this.prestamos = new ArrayList<>();
         this.prestamoActual = prestamoActual;
+        this.gestionLibro=new RepositorioLibro();
+        this.catalogo=this.gestionLibro.CargarLibro();
     }
 
     public Prestamo getPrestamoActual() {
