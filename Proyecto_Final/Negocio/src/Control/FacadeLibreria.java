@@ -9,6 +9,7 @@ import Interfaz.IGestionLibro;
 import Interfaz.IGestionPrestamo;
 import Repositorios.RepositorioLibro;
 import Repositorios.RepositorioPrestamo;
+import dto.DTOResumen;
 import entidades.Libro;
 import entidades.Prestamo;
 import entidades.Denominacion;
@@ -28,6 +29,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     private Prestamo prestamoActual;
     IGestionLibro gestionLibro;
     IGestionPrestamo gestionPrestamo;
+    DTOResumen dto;
 
     public FacadeLibreria() {
         this.gestionLibro=new RepositorioLibro();
@@ -35,9 +37,11 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.catalogo=new ArrayList<>();
         this.catalogo=this.gestionLibro.CargarLibro();
         this.prestamos = new ArrayList<>();
+        this.dto=new DTOResumen();
     }
     public boolean crearNuevoPrestamo(){
         int contador=0;
+        DTOResumen dto=new DTOResumen();
         for (Libro libro : catalogo) {
             if(libro.getUnidadesDsiponibles()>0){
                 contador++;
@@ -48,7 +52,9 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         }
         Prestamo p=new Prestamo();
         p.setFecha(java.sql.Date.valueOf(LocalDate.now()));
-        //p.setNumero(gestionPrestamo.);
+        p.setNumero(gestionPrestamo.numeroPrestamoMayor()+1);
+        this.prestamoActual=p;
+        
         return true;
     }
 
