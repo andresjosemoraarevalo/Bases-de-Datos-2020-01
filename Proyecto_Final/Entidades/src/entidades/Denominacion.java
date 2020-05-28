@@ -7,7 +7,7 @@ package entidades;
 
 /**
  *
- * @author andre, AAAAAAAAA
+ * @author Andres, Juan Pablo, Oscar
  */
 public enum Denominacion {
     //Esto es un comentario.
