@@ -5,28 +5,32 @@
  */
 package entidades;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author Andres Jose Mora, Oscar Andres Pacheco y Juan Pablo Amorocho
  */
 public class Libro {
     private String isbn;
-    private double precioBase;
+    private BigDecimal precioBase;
     private int unidadesDsiponibles;
     private int numeroImagenes;
     private int numeroVideos;
+    private String nombreLibro;
 
     public Libro() {
     }
 
-    public Libro(String isbn, double precioBase, int unidadesDsiponibles, int numeroImagenes, int numeroVideos) {
+    public Libro(String isbn, BigDecimal precioBase, int unidadesDsiponibles, int numeroImagenes, int numeroVideos, String nombreLibro) {
         this.isbn = isbn;
         this.precioBase = precioBase;
         this.unidadesDsiponibles = unidadesDsiponibles;
         this.numeroImagenes = numeroImagenes;
         this.numeroVideos = numeroVideos;
+        this.nombreLibro = nombreLibro;
     }
-
+    
     public int getNumeroVideos() {
         return numeroVideos;
     }
@@ -43,11 +47,11 @@ public class Libro {
         this.isbn = isbn;
     }
 
-    public double getPrecioBase() {
+    public BigDecimal getPrecioBase() {
         return precioBase;
     }
 
-    public void setPrecioBase(double precioBase) {
+    public void setPrecioBase(BigDecimal precioBase) {
         this.precioBase = precioBase;
     }
 
@@ -66,6 +70,12 @@ public class Libro {
     public void setNumeroImagenes(int numeroImagenes) {
         this.numeroImagenes = numeroImagenes;
     }
-    
-    
+
+    public String getNombreLibro() {
+        return nombreLibro;
+    }
+
+    public void setNombreLibro(String nombreLibro) {
+        this.nombreLibro = nombreLibro;
+    }
 }

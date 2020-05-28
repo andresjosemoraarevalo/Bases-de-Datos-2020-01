@@ -14,12 +14,14 @@ import java.util.List;
  */
 public class Linea {
     private Libro libroEnPrestamo;
-
+    private Prestamo padre;
+    
     public Linea() {
     }
 
-    public Linea(Libro libroEnPrestamo) {
+    public Linea(Libro libroEnPrestamo, Prestamo padre) {
         this.libroEnPrestamo = libroEnPrestamo;
+        this.padre = padre;
     }
 
     public Libro getLibroEnPrestamo() {
