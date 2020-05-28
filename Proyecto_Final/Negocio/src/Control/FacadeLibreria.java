@@ -23,7 +23,6 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     private List<Prestamo> prestamos;
     private Prestamo prestamoActual;
     IGestionLibro gestionLibro;
-    private Denominacion denominacion;
 
     public FacadeLibreria() {
         this.gestionLibro=new RepositorioLibro();
@@ -61,14 +60,6 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
 
     public void setPrestamos(List<Prestamo> prestamos) {
         this.prestamos = prestamos;
-    }
-
-    public Denominacion getDenominacion() {
-        return denominacion;
-    }
-
-    public void setDenominacion(Denominacion denominacion) {
-        this.denominacion = denominacion;
     }
     
 }
