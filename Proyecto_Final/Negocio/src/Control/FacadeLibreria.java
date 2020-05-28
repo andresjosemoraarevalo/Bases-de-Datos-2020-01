@@ -14,6 +14,7 @@ import dto.DTOResumen;
 import entidades.Libro;
 import entidades.Prestamo;
 import entidades.Denominacion;
+import entidades.Linea;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +32,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     private IGestionLibro gestionLibro;
     private IGestionPrestamo gestionPrestamo;
     private DTOResumen dto;
-
+    private static Constates cons;
     public FacadeLibreria() {
         this.gestionLibro=new RepositorioLibro();
         this.gestionPrestamo=new RepositorioPrestamo();
@@ -39,6 +40,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.catalogo=this.gestionLibro.CargarLibro();
         this.prestamos = new ArrayList<>();
         this.dto=new DTOResumen();
+        this.cons=new Constates();
     }
     public void persisitirPrestamo(){
         this.gestionPrestamo.agregarPrestamo(this.prestamoActual);
@@ -47,7 +49,7 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         int contador=0;
         DTOResumen dto=new DTOResumen();
         for (Libro libro : catalogo) {
-            if(libro.getUnidadesDsiponibles()>0){
+            if(libro.getUnidadesDisponibles()>0){
                 contador++;
             }
         }
@@ -78,6 +80,99 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
         this.prestamoActual = prestamoActual;
     }
 
+            //TERCERO
+    //terminado
+    private void crearLinea (){
+        Linea linea = new Linea();
+        this.prestamoActual.getLineas().add(linea);
+    }
+    
+    public DTOResumen agregarLinea (String libro, int cantidad, DTOResumen dto){
+        crearLinea();
+        String verificado = verificarLibro(libro);
+        Libro objL = null;
+        for (Libro libro1 : this.catalogo) 
+            if (libro.equals(libro1.getNombreLibro()))
+                objL = libro1;
+        
+        if (verificado==null){
+            verificado = verificarExistencias(libro, cantidad);
+            if (verificado==null){
+                this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1).setLibroEnPrestamo(objL);
+                this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1).setCantidadLibros(cantidad);
+                dto.setLineas((List<DTOLinea>) this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1));
+                dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setCantidad(cantidad);
+                dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setLibro(objL);
+                dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setSubtotal((int) calcularSubtotal(libro));
+                dto.getLineas().get(this.prestamoActual.getLineas().size()-1).setTotalLibro((int) calcularTotal(libro));
+                dto.setAgregar(true);
+                
+                return dto;
+            }
+            else{
+                dto.setMensaje(dto.getMensaje()+"\n"+verificado);             
+            }
+        }
+        else{
+            dto.setMensaje(dto.getMensaje()+"\n"+verificado);
+        }
+        dto.setAgregar(false);
+        return dto;
+    }
+    
+    //terminada
+    private String verificarLibro (String libro){  
+        for (Libro libro1 : this.catalogo) {
+            if (libro.equals(libro1.getNombreLibro())){
+                this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1).setLibroEnPrestamo(libro1);
+                return null;
+            }
+        }
+        return "El libro seleccionado no se encuentra en el catalogo";
+    }
+   
+    //terminada
+    private String verificarExistencias (String libro, int cantidad){
+        for (Libro libro1 : this.catalogo) 
+            if (libro.equals(libro1.getNombreLibro()))
+                if (libro1.getUnidadesDisponibles()>=cantidad)
+                    return null;
+        return "El libro seleccionado no cuenta con unidades suficientes para las que está solicitando";
+    }
+    
+    //terminado
+    private double calcularLibro(String libro){
+        double total;
+        for (Libro libro1 : this.catalogo) {
+            if (libro.equals(libro1.getNombreLibro())){
+                total = libro1.getPrecioBase().doubleValue()+(libro1.getNumeroImagenes()*this.cons.getVALOR_IMAGEN())+(libro1.getNumeroVideos()*cons.getVALOR_VIDEO());                
+                return total;
+            }
+        }        
+        return 0;
+    }
+    
+    //terminado
+    private double calcularSubtotal (String libro){
+        double subtotal;
+        for (Libro libro1 : this.catalogo) {
+            if (libro.equals(libro1.getNombreLibro())){
+                subtotal=calcularLibro(libro)*this.prestamoActual.getLineas().get(this.prestamoActual.getLineas().size()-1).getCantidadLibros();
+                return subtotal;
+            }      
+        }
+        return 0;        
+    }
+    
+    private double calcularTotal (String libro){
+        double total=0;
+         
+        for (Linea linea : prestamoActual.getLineas())
+            total+=calcularSubtotal(linea.getLibroEnPrestamo().getNombreLibro());
+        return total;        
+    }
+ //----------------------------------------------end of 3rd
+    
     public List<Libro> getCatalogo() {
         return catalogo;
     }

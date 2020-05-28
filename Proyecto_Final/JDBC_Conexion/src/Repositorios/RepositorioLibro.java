@@ -71,7 +71,7 @@ public class RepositorioLibro implements Interfaz.IGestionLibro {
     {
         String elString = "UPDATE Libro SET UnidadesDisponibles = ? WHERE ISBN = ?";
         String ISBN = aActualizar.getIsbn();
-        int UD = aActualizar.getUnidadesDsiponibles(), rowAff;
+        int UD = aActualizar.getUnidadesDisponibles(), rowAff;
         try(
           Connection conex = DriverManager.getConnection(Constantes.THINCONN, Constantes.USERNAME, Constantes.PASSWORD);
           PreparedStatement ps = conex.prepareStatement(elString);)

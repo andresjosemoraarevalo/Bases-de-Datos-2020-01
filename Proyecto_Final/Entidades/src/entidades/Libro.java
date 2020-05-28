@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class Libro {
     private String isbn;
     private BigDecimal precioBase;
-    private int unidadesDsiponibles;
+    private int unidadesDisponibles;
     private int numeroImagenes;
     private int numeroVideos;
     private String nombreLibro;
@@ -22,10 +22,10 @@ public class Libro {
     public Libro() {
     }
 
-    public Libro(String isbn, BigDecimal precioBase, int unidadesDsiponibles, int numeroImagenes, int numeroVideos, String nombreLibro) {
+    public Libro(String isbn, BigDecimal precioBase, int unidadesDisponibles, int numeroImagenes, int numeroVideos, String nombreLibro) {
         this.isbn = isbn;
         this.precioBase = precioBase;
-        this.unidadesDsiponibles = unidadesDsiponibles;
+        this.unidadesDisponibles = unidadesDisponibles;
         this.numeroImagenes = numeroImagenes;
         this.numeroVideos = numeroVideos;
         this.nombreLibro = nombreLibro;
@@ -55,12 +55,12 @@ public class Libro {
         this.precioBase = precioBase;
     }
 
-    public int getUnidadesDsiponibles() {
-        return unidadesDsiponibles;
+    public int getUnidadesDisponibles() {
+        return unidadesDisponibles;
     }
 
-    public void setUnidadesDsiponibles(int unidadesDsiponibles) {
-        this.unidadesDsiponibles = unidadesDsiponibles;
+    public void setUnidadesDisponibles(int unidadesDsiponibles) {
+        this.unidadesDisponibles = unidadesDsiponibles;
     }
 
     public int getNumeroImagenes() {
