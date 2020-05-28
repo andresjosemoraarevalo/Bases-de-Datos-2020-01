@@ -9,6 +9,7 @@ import Interfaz.IGestionLibro;
 import Interfaz.IGestionPrestamo;
 import Repositorios.RepositorioLibro;
 import Repositorios.RepositorioPrestamo;
+import dto.DTOLinea;
 import dto.DTOResumen;
 import entidades.Libro;
 import entidades.Prestamo;
@@ -27,9 +28,9 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
     
     private List<Prestamo> prestamos;
     private Prestamo prestamoActual;
-    IGestionLibro gestionLibro;
-    IGestionPrestamo gestionPrestamo;
-    DTOResumen dto;
+    private IGestionLibro gestionLibro;
+    private IGestionPrestamo gestionPrestamo;
+    private DTOResumen dto;
 
     public FacadeLibreria() {
         this.gestionLibro=new RepositorioLibro();
@@ -48,13 +49,20 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
             }
         }
         if(contador==0){
+            this.dto.setAgregar(true);
+            this.dto.setMensaje("No se pudo agregar porque no hay Libros disponibles");
             return false;
         }
         Prestamo p=new Prestamo();
         p.setFecha(java.sql.Date.valueOf(LocalDate.now()));
-        p.setNumero(gestionPrestamo.numeroPrestamoMayor()+1);
+        int numPrestamo=gestionPrestamo.numeroPrestamoMayor()+1;
+        p.setNumero(numPrestamo);
         this.prestamoActual=p;
-        
+        this.dto.setAgregar(true);
+        this.dto.setMensaje("El prestamo fue creado con exito");
+        this.dto.setSaldoMonedas(0);
+        this.dto.setCantidadVueltos(0);
+        this.dto.setNumeroPrestamo(numPrestamo);
         return true;
     }
 
@@ -80,6 +88,14 @@ public class FacadeLibreria implements Interfaz.IFacadeLibreria{
 
     public void setPrestamos(List<Prestamo> prestamos) {
         this.prestamos = prestamos;
+    }
+
+    public DTOResumen getDto() {
+        return dto;
+    }
+
+    public void setDto(DTOResumen dto) {
+        this.dto = dto;
     }
     
 }

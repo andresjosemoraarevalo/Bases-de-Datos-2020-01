@@ -11,6 +11,7 @@ import entidades.Libro;
 import java.util.ArrayList;
 import java.util.List;
 import dto.DTOLinea;
+import dto.DTOResumen;
 
 /**
  *
@@ -38,20 +39,11 @@ public class ControlEventosLibreria {
         }
         return nombreLibros;
     }
-    public DTOLinea agregarLinea (Libro libro, int cantidad){
-        //Verificar libro
-        
-        //Verificar existencia
-        
-        //Crear linea
-        
-        //Calcular el valor del libro
-        
-        //Calcular subtotal de una linea
-        
-        //calcular el total del prestamo
-        
-        //Crear DTO resumen
+    public DTOResumen getDto(){
+        return this.interfazLibreria.getDto();
     }
-    
+    public DTOResumen crearNuevoPrestamo(){
+        this.interfazLibreria.crearNuevoPrestamo();
+        return this.interfazLibreria.getDto();
+    }
 }

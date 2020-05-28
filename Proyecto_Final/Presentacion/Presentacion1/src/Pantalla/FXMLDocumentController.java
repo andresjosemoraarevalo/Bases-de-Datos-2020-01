@@ -23,6 +23,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import Pantalla.PantallaKiosco;
+import dto.DTOResumen;
+import javafx.scene.control.Button;
+import javax.swing.JOptionPane;
 /**
  *
  * @author andre
@@ -37,7 +40,14 @@ public class FXMLDocumentController implements Initializable {
     private ComboBox<String> listaLibros;
     @FXML
     private ComboBox<Integer> listaMonedas;
-  
+    @FXML
+    private Button BotonNuevoPrestamo;
+    @FXML
+    private Label vueltosLabel;
+    @FXML
+    private Label saldoDisponibleLabel;
+    @FXML
+    private Label numeroPrestamo;
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -62,5 +72,22 @@ public class FXMLDocumentController implements Initializable {
         listaLibros.getItems().addAll(FXCollections.observableList(contro.nombreLibros()));
         listaMonedas.getItems().addAll(500, 1000);
     }    
-    
+    @FXML
+    private void nuevoPrestamo(ActionEvent event) {
+        DTOResumen dto =contro.crearNuevoPrestamo();
+        if(dto.isAgregar()){
+            JOptionPane.showMessageDialog(null, dto.getMensaje());
+            this.vueltosLabel.setText("$ "+Integer.toString(dto.getCantidadVueltos()));
+            this.saldoDisponibleLabel.setText("$ "+Integer.toString(dto.getSaldoMonedas()));
+            this.numeroPrestamo.setText(Integer.toString(dto.getNumeroPrestamo()));
+        }else{
+            JOptionPane.showMessageDialog(null,dto.getMensaje(),"Error al agregar",JOptionPane.WARNING_MESSAGE); 
+        }
+    }
+    private void Clear(){
+        this.numeroPrestamo.setText(null);
+        this.saldoDisponibleLabel.setText(null);
+        this.vueltosLabel.setText(null);
+        
+    }
 }

@@ -19,7 +19,7 @@ public class DTOResumen {
     private int totalPrestamo;
     private int saldoMonedas;
     private int cantidadVueltos; 
-
+    private int numeroPrestamo;
     public DTOResumen() {
     }
 
@@ -79,5 +79,14 @@ public class DTOResumen {
     public void setSaldoMonedas(int saldoMonedas) {
         this.saldoMonedas = saldoMonedas;
     }
+
+    public int getNumeroPrestamo() {
+        return numeroPrestamo;
+    }
+
+    public void setNumeroPrestamo(int numeroPrestamo) {
+        this.numeroPrestamo = numeroPrestamo;
+    }
+    
     
 }

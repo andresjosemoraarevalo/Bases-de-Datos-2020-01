@@ -5,6 +5,7 @@
  */
 package Interfaz;
 
+import dto.DTOResumen;
 import entidades.Libro;
 import java.util.List;
 
@@ -14,4 +15,6 @@ import java.util.List;
  */
 public interface IFacadeLibreria {
     public List<Libro> getCatalogo();
+    public boolean crearNuevoPrestamo();
+    public DTOResumen getDto();
 }
