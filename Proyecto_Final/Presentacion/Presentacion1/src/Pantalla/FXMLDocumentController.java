@@ -23,11 +23,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import Pantalla.PantallaKiosco;
+import dto.DTOLinea;
 import dto.DTOResumen;
+import entidades.Linea;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javax.swing.JOptionPane;
-import javax.swing.text.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 /**
  *
  * @author andre
@@ -51,7 +55,7 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label numeroPrestamo;
     @FXML
-    private TableView tablaPrestamo;
+    private TableView<ModelTable> tablaPrestamo;
     @FXML
     private TextField cantidadLibros;
     @FXML
@@ -66,6 +70,15 @@ public class FXMLDocumentController implements Initializable {
     private Button botonBuscar;
     @FXML
     private TextField buscarNumeroPrestamo;
+    @FXML
+    TableColumn<ModelTable,String> libroCol;
+    @FXML
+    TableColumn<ModelTable,Integer> cantidadCol;
+    @FXML
+    TableColumn<ModelTable,Integer> precioCol;
+    @FXML
+    TableColumn<ModelTable,Integer> subTotalCol;    
+            
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -102,10 +115,21 @@ public class FXMLDocumentController implements Initializable {
             JOptionPane.showMessageDialog(null,dto.getMensaje(),"Error al agregar",JOptionPane.WARNING_MESSAGE); 
         }
     }
-    private void Clear(){
+    private void clear(){
         this.numeroPrestamo.setText(null);
         this.saldoDisponibleLabel.setText(null);
         this.vueltosLabel.setText(null);
+        
+    }
+    @FXML
+    private void agregarLinea(){
+        //this.tablaPrestamo=new TableView();
+        
+    }
+    @FXML
+    private void eliminarLinea(){
+        //DTOResumen seleccion;
+        //this.tablaPrestamo
         
     }
 }

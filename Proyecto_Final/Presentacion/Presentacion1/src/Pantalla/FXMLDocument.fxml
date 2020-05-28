@@ -30,10 +30,10 @@
       <ComboBox fx:id="listaMonedas" layoutX="325.0" layoutY="409.0" prefHeight="25.0" prefWidth="77.0" promptText="Select..." />
       <TableView fx:id="tablaPrestamo" layoutX="21.0" layoutY="278.0" prefHeight="120.0" prefWidth="389.0">
         <columns>
-          <TableColumn prefWidth="92.0" text="Libro" />
-          <TableColumn prefWidth="88.0" text="Cantidad" />
-            <TableColumn prefWidth="87.0" text="Precio Libro" />
-            <TableColumn prefWidth="121.0" text="SubTotal" />
+          <TableColumn fx:id="libroCol" prefWidth="92.0" text="Libro" />
+          <TableColumn fx:id="cantidadCol" prefWidth="88.0" text="Cantidad" />
+            <TableColumn fx:id="precioCol" prefWidth="87.0" text="Precio Libro" />
+            <TableColumn fx:id="subTotalCol" prefWidth="121.0" text="SubTotal" />
         </columns>
       </TableView>
       <Button fx:id="botonAgregarMonedas" layoutX="424.0" layoutY="409.0" mnemonicParsing="false" text="Agregar Monedas" />
@@ -46,5 +46,6 @@
       <Button fx:id="botonBuscar" layoutX="643.0" layoutY="34.0" mnemonicParsing="false" text="Buscar" />
       <Label layoutX="462.0" layoutY="14.0" text="Buscar por número de prestamo" />
       <TextField fx:id="buscarNumeroPrestamo" layoutX="462.0" layoutY="34.0" />
+      <Button fx:id="botonEliminarLinea" layoutX="462.0" layoutY="326.0" mnemonicParsing="false" onAction="#eliminarLinea" text="Eliminar Linea" />
     </children>
 </AnchorPane>
