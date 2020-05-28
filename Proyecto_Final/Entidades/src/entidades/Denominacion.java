@@ -7,7 +7,7 @@ package entidades;
 
 /**
  *
- * @author andre
+ * @author andre, AAAAAAAAA
  */
 public enum Denominacion {
     QUINIENTOS(500),
